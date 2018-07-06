@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
+gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'rails', '~> 5.1.2'
 gem 'sqlite3'
 gem 'puma', '~> 3.7'
@@ -14,9 +14,13 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'faker'
-gem 'therubyracer'
 gem 'bootstrap-sass'
 
+group :production do
+  gem 'libv8'
+ gem 'therubyracer', :platform => :ruby
+
+end
 group :development, :test do
   gem 'bullet'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
